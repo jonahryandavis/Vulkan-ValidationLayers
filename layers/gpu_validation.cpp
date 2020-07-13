@@ -1172,6 +1172,7 @@ bool GpuAssisted::InstrumentShader(const VkShaderModuleCreateInfo *pCreateInfo, 
     using namespace spvtools;
     spv_target_env target_env = PickSpirvEnv(api_version, (device_extensions.vk_khr_spirv_1_4 != kNotEnabled));
     Optimizer optimizer(target_env);
+    optimizer.SetMessageConsumer(UtilConsoleMessageConsumer);
     optimizer.RegisterPass(
         CreateInstBindlessCheckPass(desc_set_bind_index, unique_shader_module_id, descriptor_indexing, descriptor_indexing));
     optimizer.RegisterPass(CreateAggressiveDCEPass());

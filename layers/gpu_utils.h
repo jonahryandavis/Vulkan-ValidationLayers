@@ -452,3 +452,4 @@ void UtilGenerateCommonMessage(const debug_report_data *report_data, const VkCom
                                const uint32_t operation_index, std::string &msg);
 void UtilGenerateSourceMessages(const std::vector<unsigned int> &pgm, const uint32_t *debug_record, bool from_printf,
                                 std::string &filename_msg, std::string &source_msg);
+const spvtools::MessageConsumer UtilConsoleMessageConsumer;

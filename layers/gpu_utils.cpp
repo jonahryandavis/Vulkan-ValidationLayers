@@ -590,3 +590,18 @@ void UtilGenerateSourceMessages(const std::vector<unsigned int> &pgm, const uint
     }
     source_msg = source_stream.str();
 }
+
+const spvtools::MessageConsumer UtilConsoleMessageConsumer =
+[](spv_message_level_t level, const char*, const spv_position_t& position,
+    const char* message) -> void {
+    switch (level) {
+    case SPV_MSG_FATAL:
+    case SPV_MSG_INTERNAL_ERROR:
+    case SPV_MSG_ERROR:
+        std::cerr << "error: line " << position.index << ": " << message
+            << std::endl;
+        break;
+    default:
+        break;
+    }
+};
